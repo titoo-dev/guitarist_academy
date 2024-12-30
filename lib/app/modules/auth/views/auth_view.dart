@@ -79,12 +79,6 @@ class LoginContent extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'example@gmail.com',
                   prefixIcon: Icon(Icons.email_outlined),
-                  filled: true,
-                  fillColor: Theme.of(context).inputDecorationTheme.fillColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
                 ),
               ),
 
@@ -98,12 +92,6 @@ class LoginContent extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: '********',
                   prefixIcon: Icon(Icons.lock_outline),
-                  filled: true,
-                  fillColor: Theme.of(context).inputDecorationTheme.fillColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
                 ),
               ),
             ],

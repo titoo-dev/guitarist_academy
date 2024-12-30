@@ -4,35 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
+import 'app/shared/theme.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ),
-  );
+  SystemChrome.setSystemUIOverlayStyle(kSystemUiOverlayStyle);
 
   runApp(
     GetMaterialApp(
-      title: 'Application',
+      title: 'Guitarist Academy',
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          // white text color for ElevatedButton
-          style: ElevatedButton.styleFrom(
-            textStyle: TextStyle(color: Colors.white),
-            padding: EdgeInsets.symmetric(vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
+        colorScheme: colorScheme,
+        inputDecorationTheme: inputDecorationTheme,
+        elevatedButtonTheme: elevatedButtonTheme,
       ),
     ),
   );
