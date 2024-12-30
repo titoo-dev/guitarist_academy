@@ -117,7 +117,7 @@ class LoginContent extends StatelessWidget {
         ),
 
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(16.0),
           child: ElevatedButton(
             onPressed: () {},
             child: Text('Login'),
