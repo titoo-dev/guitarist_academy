@@ -12,16 +12,31 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
     return DissmisKeyboard(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
-          ),
-        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(height: 60.0),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Row(
+                  children: [
+                    MaterialButton(
+                      onPressed: Get.back,
+                      textColor: Theme.of(context).colorScheme.primary,
+                      minWidth: 0,
+                      padding: EdgeInsets.all(14.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      child: Icon(Icons.arrow_back_outlined),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 28.0),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -61,7 +76,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text('Reset Password'),

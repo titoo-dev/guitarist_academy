@@ -5,7 +5,6 @@ import 'package:lottie/lottie.dart';
 
 import '../controllers/choose_avatar_controller.dart';
 
-// a grid view of avatars, we can choose one of them
 class ChooseAvatarView extends GetView<ChooseAvatarController> {
   const ChooseAvatarView({super.key});
   @override

@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class RegisterController extends GetxController {
-  //TODO: Implement RegisterController
+  void register() {
+    Get.offNamed(Routes.ONBOARDING);
+  }
 
-  final count = 0.obs;
-
-  void increment() => count.value++;
+  void navigateToLogin() {
+    Get.offNamed(Routes.AUTH);
+  }
 }

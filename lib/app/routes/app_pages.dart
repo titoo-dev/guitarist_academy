@@ -8,9 +8,7 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
-import '../modules/onboarding/widgets/onboarding1.dart';
-import '../modules/onboarding/widgets/onboarding2.dart';
-import '../modules/onboarding/widgets/onboarding3.dart';
+import '../modules/onboarding/widgets/onboarding_item.dart';
 import '../modules/recover_password/bindings/recover_password_binding.dart';
 import '../modules/recover_password/views/recover_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -40,9 +38,26 @@ class AppPages {
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(
         onboardingPages: [
-          Onboarding1(),
-          Onboarding2(),
-          Onboarding3(),
+          OnboardingItem(
+            imagePath: 'assets/onboard1.png',
+            title: 'Hi & Welcome',
+            message:
+                'My name is Kerry (KK for short) and as your virual coach, I\'m going to help you learn to play the guitar over the next 6 weeks.',
+          ),
+          OnboardingItem(
+            imagePath: 'assets/onboard2.png',
+            title: 'But To Help Me Help You...',
+            message:
+                'You will need to commit to doing the following two things on a daily basis...',
+            imagePosition: ImagePosition.top,
+          ),
+          OnboardingItem(
+            imagePath: 'assets/onboard3.png',
+            title: 'Complete At Least 1 Lesson Per Day',
+            message:
+                'Don\'t worry, You don\'t need to spend practicing. Just a 10-15 minutes a day is all that\'s needed.',
+            imagePosition: ImagePosition.top,
+          ),
         ],
       ),
       binding: OnboardingBinding(),

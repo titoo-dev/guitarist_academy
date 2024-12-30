@@ -45,7 +45,7 @@ class AuthHeader extends StatelessWidget {
   }
 }
 
-class LoginContent extends StatelessWidget {
+class LoginContent extends GetView<AuthController> {
   const LoginContent({super.key});
 
   @override
@@ -107,9 +107,7 @@ class LoginContent extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
               recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  debugPrint('Forgot password tapped');
-                },
+                ..onTap = controller.initiatePasswordRecovery,
             ),
           ),
         ),
@@ -117,7 +115,7 @@ class LoginContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: controller.login,
             child: Text('Login'),
           ),
         ),
@@ -139,9 +137,7 @@ class LoginContent extends StatelessWidget {
                     color: Theme.of(context).primaryColor,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      debugPrint('Sign up tapped');
-                    },
+                    ..onTap = controller.register,
                 ),
               ],
             ),

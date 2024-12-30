@@ -93,7 +93,7 @@ class RegisterView extends GetView<RegisterController> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: controller.register,
                   child: Text('Sign Up'),
                 ),
               ),
@@ -114,9 +114,7 @@ class RegisterView extends GetView<RegisterController> {
                           color: Theme.of(context).primaryColor,
                         ),
                         recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            debugPrint('Sign in tapped');
-                          },
+                          ..onTap = controller.navigateToLogin,
                       ),
                     ],
                   ),
