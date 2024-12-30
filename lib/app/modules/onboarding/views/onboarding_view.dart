@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/widgets/buttons.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -32,19 +33,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 Obx(
                   () => Opacity(
                     opacity: controller.currentPage.value == 0 ? 0 : 1,
-                    child: MaterialButton(
-                      onPressed: controller.previousPage,
-                      textColor: Theme.of(context).colorScheme.primary,
-                      minWidth: 0,
-                      padding: EdgeInsets.all(14.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      child: Icon(Icons.arrow_back_outlined),
-                    ),
+                    child: BackwardButton(onPressed: controller.previousPage),
                   ),
                 ),
                 Spacer(),
@@ -77,16 +66,8 @@ class OnboardingView extends GetView<OnboardingController> {
                 ),
 
                 Spacer(),
-                MaterialButton(
-                  onPressed: controller.nextPage,
-                  color: Theme.of(context).colorScheme.primary,
-                  textColor: Theme.of(context).colorScheme.onPrimary,
-                  minWidth: 0,
-                  padding: EdgeInsets.all(14.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Icon(Icons.arrow_forward_outlined),
-                ),
+
+                ForwardButton(onPressed: controller.nextPage),
               ],
             ),
           )

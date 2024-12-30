@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/widgets/buttons.dart';
 import '../../../shared/widgets/dismiss_keyboard.dart';
 import '../controllers/recover_password_controller.dart';
 
@@ -21,19 +22,7 @@ class RecoverPasswordView extends GetView<RecoverPasswordController> {
                 padding: const EdgeInsets.all(14.0),
                 child: Row(
                   children: [
-                    MaterialButton(
-                      onPressed: Get.back,
-                      textColor: Theme.of(context).colorScheme.primary,
-                      minWidth: 0,
-                      padding: EdgeInsets.all(14.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      child: Icon(Icons.arrow_back_outlined),
-                    ),
+                    BackwardButton(onPressed: Get.back),
                   ],
                 ),
               ),
