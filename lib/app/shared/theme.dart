@@ -5,7 +5,7 @@ final colorScheme = ColorScheme.fromSeed(seedColor: Colors.blue);
 
 const kSystemUiOverlayStyle = SystemUiOverlayStyle(
   statusBarColor: Colors.transparent,
-  statusBarIconBrightness: Brightness.light,
+  statusBarIconBrightness: Brightness.dark,
   statusBarBrightness: Brightness.dark,
   systemNavigationBarColor: Colors.white,
   systemNavigationBarIconBrightness: Brightness.dark,

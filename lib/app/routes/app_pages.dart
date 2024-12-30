@@ -6,6 +6,9 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/onboarding/widgets/onboarding2.dart';
+import '../modules/onboarding/widgets/onboarding1.dart';
+import '../modules/onboarding/widgets/onboarding3.dart';
 import '../modules/recover_password/bindings/recover_password_binding.dart';
 import '../modules/recover_password/views/recover_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -33,7 +36,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ONBOARDING,
-      page: () => const OnboardingView(),
+      page: () => const OnboardingView(
+        onboardingPages: [
+          Onboarding1(),
+          Onboarding2(),
+          Onboarding3(),
+        ],
+      ),
       binding: OnboardingBinding(),
     ),
     GetPage(
