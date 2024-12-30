@@ -34,10 +34,11 @@ final inputDecorationTheme = InputDecorationTheme(
 
 final elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
-    textStyle: TextStyle(color: Colors.white),
+    foregroundColor: colorScheme.onPrimary,
     padding: EdgeInsets.symmetric(vertical: 16),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),
+    backgroundColor: colorScheme.primary,
   ),
 );

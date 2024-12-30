@@ -9,6 +9,7 @@ abstract class Routes {
   static const AUTH = _Paths.AUTH;
   static const REGISTER = _Paths.REGISTER;
   static const RECOVER_PASSWORD = _Paths.RECOVER_PASSWORD;
+  static const CHOOSE_AVATAR = _Paths.CHOOSE_AVATAR;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const AUTH = '/auth';
   static const REGISTER = '/register';
   static const RECOVER_PASSWORD = '/recover-password';
+  static const CHOOSE_AVATAR = '/choose-avatar';
 }
