@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/widgets/dismiss_keyboard.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthView extends GetView<AuthController> {
   const AuthView({super.key});
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+    return DissmisKeyboard(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(

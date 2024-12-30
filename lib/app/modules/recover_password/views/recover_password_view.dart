@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/widgets/dismiss_keyboard.dart';
 import '../controllers/recover_password_controller.dart';
 
 class RecoverPasswordView extends GetView<RecoverPasswordController> {
   const RecoverPasswordView({super.key});
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+    return DissmisKeyboard(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
