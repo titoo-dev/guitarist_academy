@@ -85,7 +85,7 @@ class ChooseAvatarView extends GetView<ChooseAvatarController> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: controller.confirmAvatar,
               child: Text('Continue'),
             ),
           )

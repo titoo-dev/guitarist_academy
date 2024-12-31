@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class ChooseAvatarController extends GetxController {
   int selectedAvatarIndex = 0;
 
@@ -15,5 +17,9 @@ class ChooseAvatarController extends GetxController {
   void chooseAvatar(int index) {
     selectedAvatarIndex = index;
     update(['choose_avatar']);
+  }
+
+  void confirmAvatar() {
+    Get.offNamed(Routes.HOME);
   }
 }
