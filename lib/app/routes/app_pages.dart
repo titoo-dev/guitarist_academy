@@ -52,8 +52,8 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(
         pages: [
-          HomePage(),
-          Center(child: Text('Courses')),
+          DashboardScreen(),
+          LessonsScreen(),
           Center(child: Text('More')),
         ],
       ),

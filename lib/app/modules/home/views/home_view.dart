@@ -74,26 +74,33 @@ class HomeView extends GetView<HomeController> {
       body: Navigator(
         initialRoute: initialRoute.toString(),
         key: HomeController.navigatorKey,
-        onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (context) => pages[int.parse(settings.name!)],
+        onGenerateRoute: (settings) => PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              pages[int.parse(settings.name!)],
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
-          HomeViewHeader(),
-          HomeViewBanner(),
+          DashboardHeader(),
+          DashboardBanner(),
           Expanded(
-            child: HomeViewContent(
+            child: DashboardContent(
               weeklyTasks: [
                 WeeklyTask(
                   weekNumber: 1,
@@ -140,8 +147,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HomeViewHeader extends StatelessWidget {
-  const HomeViewHeader({super.key});
+class DashboardHeader extends StatelessWidget {
+  const DashboardHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -186,8 +193,8 @@ class HomeViewHeader extends StatelessWidget {
   }
 }
 
-class HomeViewBanner extends StatelessWidget {
-  const HomeViewBanner({super.key});
+class DashboardBanner extends StatelessWidget {
+  const DashboardBanner({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -239,8 +246,8 @@ class HomeViewBanner extends StatelessWidget {
   }
 }
 
-class HomeViewContent extends StatelessWidget {
-  const HomeViewContent({
+class DashboardContent extends StatelessWidget {
+  const DashboardContent({
     super.key,
     required this.weeklyTasks,
   });
@@ -293,6 +300,162 @@ class HomeViewContent extends StatelessWidget {
               steps: [
                 for (final task in weeklyTasks) task.getStep(context),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LessonsScreen extends StatelessWidget {
+  const LessonsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 14.0,
+          right: 14.0,
+          top: 14.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 14.0,
+          children: [
+            Text(
+              'Courses',
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium
+                  ?.copyWith(fontWeight: FontWeight.w600),
+            ),
+            CourseFilterPanel(),
+            Expanded(
+              child: CourseList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CourseList extends StatelessWidget {
+  const CourseList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // gridview
+    return GridView.builder(
+      padding: EdgeInsets.only(top: 14.0),
+      itemCount: 30,
+      physics: BouncingScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: .95,
+      ),
+      itemBuilder: (context, index) {
+        return CourseCard();
+      },
+    );
+  }
+}
+
+class CourseFilterPanel extends StatelessWidget {
+  const CourseFilterPanel({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // enable to filter courses by category ['all', ongoing', 'completed', 'upcoming']
+    return SizedBox(
+      height: 50,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          for (final category in ['All', 'Ongoing', 'Completed', 'Upcoming'])
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 32),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+                onPressed: () {},
+                child: Text(
+                  category,
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class CourseCard extends StatelessWidget {
+  const CourseCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: () {},
+      padding: EdgeInsets.zero,
+      elevation: 1,
+      color: Theme.of(context).colorScheme.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: Image.asset(
+                'assets/onboard1.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Guitar Basics',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.w600),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Spacer(),
+                  LinearProgressIndicator(
+                    value: 0.7, // Example progress value
+                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
