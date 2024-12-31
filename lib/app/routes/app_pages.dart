@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/choose_avatar/bindings/choose_avatar_binding.dart';
 import '../modules/choose_avatar/views/choose_avatar_view.dart';
+import '../modules/course_detail/bindings/course_detail_binding.dart';
+import '../modules/course_detail/views/course_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/screens/dashboard_screen.dart';
 import '../modules/home/screens/courses_screen.dart';
+import '../modules/home/screens/dashboard_screen.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/lesson_detail/bindings/lesson_detail_binding.dart';
+import '../modules/lesson_detail/views/lesson_detail_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/onboarding/widgets/onboarding_item.dart';
@@ -92,6 +97,16 @@ class AppPages {
       name: _Paths.CHOOSE_AVATAR,
       page: () => const ChooseAvatarView(),
       binding: ChooseAvatarBinding(),
+    ),
+    GetPage(
+      name: _Paths.COURSE_DETAIL,
+      page: () => const CourseDetailView(),
+      binding: CourseDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.LESSON_DETAIL,
+      page: () => const LessonDetailView(),
+      binding: LessonDetailBinding(),
     ),
   ];
 }
