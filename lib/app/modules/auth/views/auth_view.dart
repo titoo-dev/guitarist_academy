@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/widgets/dismiss_keyboard.dart';
-import '../../../shared/widgets/safe_brightness.dart';
+import '../../../shared/widgets/dynamic_brightness.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthView extends GetView<AuthController> {

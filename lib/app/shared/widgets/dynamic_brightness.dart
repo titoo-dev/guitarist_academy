@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class DynamicBrightness extends StatelessWidget {
-  const DynamicBrightness(
-      {super.key,
-      required this.child,
-      this.outsideSafeAreaColor = Colors.white});
+  const DynamicBrightness({
+    super.key,
+    required this.child,
+    this.outsideSafeAreaColor = Colors.white,
+  });
 
   final Widget child;
   final Color outsideSafeAreaColor;

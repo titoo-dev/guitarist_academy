@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/widgets/buttons.dart';
-import '../../../shared/widgets/safe_brightness.dart';
+import '../../../shared/widgets/dynamic_brightness.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {

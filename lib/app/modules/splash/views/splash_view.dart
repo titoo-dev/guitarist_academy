@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../../routes/app_pages.dart';
-import '../../../shared/widgets/safe_brightness.dart';
+import '../../../shared/widgets/dynamic_brightness.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
