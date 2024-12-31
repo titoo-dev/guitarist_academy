@@ -61,7 +61,7 @@ class AppPages {
         pages: [
           DashboardScreen(),
           CoursesScreen(),
-          Center(child: Text('More')),
+          Center(child: Text('Tuner')),
         ],
       ),
       binding: HomeBinding(),

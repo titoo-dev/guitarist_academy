@@ -58,7 +58,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     GButton(
                       icon: LineIcons.guitar,
-                      text: 'Tool',
+                      text: 'Tuner',
                     ),
                   ],
                   selectedIndex: state.currentIndex.value,
