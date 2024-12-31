@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../modules/auth/bindings/auth_binding.dart';
@@ -49,7 +50,13 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => const HomeView(
+        pages: [
+          HomePage(),
+          Center(child: Text('Courses')),
+          Center(child: Text('More')),
+        ],
+      ),
       binding: HomeBinding(),
     ),
     GetPage(
