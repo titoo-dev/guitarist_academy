@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../shared/widgets/dismiss_keyboard.dart';
+import '../../../shared/widgets/safe_brightness.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthView extends GetView<AuthController> {
@@ -11,15 +12,18 @@ class AuthView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return DissmisKeyboard(
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: SingleChildScrollView(
-          child: Column(
-            spacing: 20.0,
-            children: [
-              AuthHeader(),
-              LoginContent(),
-            ],
+      child: DynamicBrightness(
+        outsideSafeAreaColor: Theme.of(context).colorScheme.primary,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          body: SingleChildScrollView(
+            child: Column(
+              spacing: 20.0,
+              children: [
+                AuthHeader(),
+                LoginContent(),
+              ],
+            ),
           ),
         ),
       ),

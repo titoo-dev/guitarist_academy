@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../shared/widgets/safe_brightness.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -35,16 +36,19 @@ class _SplashContentState extends State<SplashContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Center(
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: 50,
-          child: Icon(
-            LineIcons.guitar,
-            color: Theme.of(context).primaryColor,
-            size: 50,
+    return DynamicBrightness(
+      outsideSafeAreaColor: Theme.of(context).colorScheme.primary,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
+        body: Center(
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 50,
+            child: Icon(
+              LineIcons.guitar,
+              color: Theme.of(context).primaryColor,
+              size: 50,
+            ),
           ),
         ),
       ),
