@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../widgets/course_filter_panel.dart';
 import '../widgets/course_list.dart';
 
-class LessonsScreen extends StatelessWidget {
-  const LessonsScreen({super.key});
+class CoursesScreen extends StatelessWidget {
+  const CoursesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

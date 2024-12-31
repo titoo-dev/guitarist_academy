@@ -7,7 +7,7 @@ import '../modules/choose_avatar/bindings/choose_avatar_binding.dart';
 import '../modules/choose_avatar/views/choose_avatar_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/screens/dashboard_screen.dart';
-import '../modules/home/screens/lesson_screen.dart';
+import '../modules/home/screens/courses_screen.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
@@ -55,7 +55,7 @@ class AppPages {
       page: () => const HomeView(
         pages: [
           DashboardScreen(),
-          LessonsScreen(),
+          CoursesScreen(),
           Center(child: Text('More')),
         ],
       ),

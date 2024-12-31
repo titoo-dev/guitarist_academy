@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
         builder: (state) {
           return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onPrimary,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 20,

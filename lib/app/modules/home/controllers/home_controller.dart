@@ -20,4 +20,9 @@ class HomeController extends GetxController {
   void selectCategory(String category) {
     selectedCategory.value = category;
   }
+
+  // tap course
+  void tapCourse() {
+    Get.toNamed('/course');
+  }
 }
