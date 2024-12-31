@@ -358,38 +358,41 @@ class CourseList extends StatelessWidget {
   }
 }
 
-class CourseFilterPanel extends StatelessWidget {
+class CourseFilterPanel extends GetView<HomeController> {
   const CourseFilterPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // enable to filter courses by category ['all', ongoing', 'completed', 'upcoming']
     return SizedBox(
       height: 50,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          for (final category in ['All', 'Ongoing', 'Completed', 'Upcoming'])
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
+      child: GetX<HomeController>(builder: (state) {
+        return ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            for (final category in ['All', 'Ongoing', 'Completed', 'Upcoming'])
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: ChoiceChip(
+                  label: Text(
+                    category,
+                    style: TextStyle(
+                      color: state.selectedCategory.value == category
+                          ? Theme.of(context).colorScheme.onPrimary
+                          : Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  category,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                  selected: state.selectedCategory.value == category,
+                  selectedColor: Theme.of(context).colorScheme.primary,
+                  onSelected: (bool selected) {
+                    if (selected) {
+                      controller.selectCategory(category);
+                    }
+                  },
                 ),
               ),
-            ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }
