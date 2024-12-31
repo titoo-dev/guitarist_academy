@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../shared/widgets/app_logo.dart';
 import '../../../shared/widgets/dynamic_brightness.dart';
 import '../controllers/splash_controller.dart';
 
@@ -41,15 +42,7 @@ class _SplashContentState extends State<SplashContent> {
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: Center(
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 50,
-            child: Icon(
-              LineIcons.guitar,
-              color: Theme.of(context).primaryColor,
-              size: 50,
-            ),
-          ),
+          child: AppLogo(),
         ),
       ),
     );

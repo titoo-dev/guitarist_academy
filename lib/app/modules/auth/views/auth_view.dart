@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../shared/widgets/app_logo.dart';
 import '../../../shared/widgets/dismiss_keyboard.dart';
 import '../../../shared/widgets/dynamic_brightness.dart';
 import '../controllers/auth_controller.dart';
@@ -45,6 +46,23 @@ class AuthHeader extends StatelessWidget {
           bottomRight: Radius.circular(25),
         ),
       ),
+      child: Stack(
+        children: [
+          Positioned(
+            top: 60,
+            left: 20,
+            child: AppLogo(
+              size: 30,
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 32.0),
+              child: Image.asset('assets/onboard3.png', height: 200),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -61,8 +79,11 @@ class LoginContent extends GetView<AuthController> {
         Padding(
           padding: const EdgeInsets.all(14.0),
           child: Text(
-            'Login',
-            style: Theme.of(context).textTheme.headlineMedium,
+            'Log in',
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge
+                ?.copyWith(fontWeight: FontWeight.w600),
           ),
         ),
 
