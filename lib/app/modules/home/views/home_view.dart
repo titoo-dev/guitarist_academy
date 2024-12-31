@@ -71,18 +71,10 @@ class HomeView extends GetView<HomeController> {
           );
         },
       ),
-      body: Navigator(
-        initialRoute: initialRoute.toString(),
-        key: HomeController.navigatorKey,
-        onGenerateRoute: (settings) => PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              pages[int.parse(settings.name!)],
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
+      body: Obx(
+        () => IndexedStack(
+          index: controller.currentIndex.value,
+          children: pages,
         ),
       ),
     );
