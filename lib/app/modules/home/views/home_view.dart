@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../shared/theme.dart';
 import '../controllers/home_controller.dart';
+import '../widgets/weekly_task.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({
@@ -18,19 +22,52 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final navigationBarItems = [
-      BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      BottomNavigationBarItem(icon: Icon(Icons.book_online), label: 'Courses'),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.more_horiz_outlined), label: 'More'),
-    ];
     return Scaffold(
       bottomNavigationBar: GetX<HomeController>(
         builder: (state) {
-          return BottomNavigationBar(
-            items: navigationBarItems,
-            onTap: controller.onTap,
-            currentIndex: state.currentIndex.value,
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 20,
+                  color: Colors.black12,
+                )
+              ],
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                child: GNav(
+                  rippleColor: gNavRippleColor!,
+                  hoverColor: gNavHoverColor!,
+                  gap: 8,
+                  activeColor: gNavActiveColor,
+                  iconSize: 24,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  duration: Duration(milliseconds: 400),
+                  tabBackgroundColor: gNavTabBackgroundColor!,
+                  color: Colors.black,
+                  tabs: [
+                    GButton(
+                      icon: LineIcons.home,
+                      text: 'Home',
+                    ),
+                    GButton(
+                      icon: LineIcons.book,
+                      text: 'Lessons',
+                    ),
+                    GButton(
+                      icon: LineIcons.guitar,
+                      text: 'Tool',
+                    ),
+                  ],
+                  selectedIndex: state.currentIndex.value,
+                  onTabChange: controller.onTap,
+                ),
+              ),
+            ),
           );
         },
       ),
@@ -55,7 +92,48 @@ class HomePage extends StatelessWidget {
         children: [
           HomeViewHeader(),
           HomeViewBanner(),
-          Expanded(child: HomeViewContent()),
+          Expanded(
+            child: HomeViewContent(
+              weeklyTasks: [
+                WeeklyTask(
+                  weekNumber: 1,
+                  color: Theme.of(context).colorScheme.primary,
+                  completedLessons: 12,
+                  totalLessons: 12,
+                ),
+                WeeklyTask(
+                  weekNumber: 2,
+                  color: Theme.of(context).colorScheme.secondary,
+                  completedLessons: 1,
+                  totalLessons: 5,
+                ),
+                WeeklyTask(
+                  weekNumber: 3,
+                  color: Theme.of(context).colorScheme.secondary,
+                  completedLessons: 0,
+                  totalLessons: 5,
+                ),
+                WeeklyTask(
+                  weekNumber: 4,
+                  color: Theme.of(context).colorScheme.secondary,
+                  completedLessons: 0,
+                  totalLessons: 5,
+                ),
+                WeeklyTask(
+                  weekNumber: 5,
+                  color: Theme.of(context).colorScheme.secondary,
+                  completedLessons: 0,
+                  totalLessons: 5,
+                ),
+                WeeklyTask(
+                  weekNumber: 6,
+                  color: Theme.of(context).colorScheme.secondary,
+                  completedLessons: 0,
+                  totalLessons: 5,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -162,12 +240,17 @@ class HomeViewBanner extends StatelessWidget {
 }
 
 class HomeViewContent extends StatelessWidget {
-  const HomeViewContent({super.key});
+  const HomeViewContent({
+    super.key,
+    required this.weeklyTasks,
+  });
+
+  final List<WeeklyTask> weeklyTasks;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding: const EdgeInsets.only(left: 14.0, right: 14.0, top: 14.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -180,15 +263,36 @@ class HomeViewContent extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('Course ${index + 1}'),
-                  subtitle: Text('This is a course description'),
-                  trailing: Icon(Icons.arrow_forward_ios),
+            child: Stepper(
+              stepIconBuilder: (stepIndex, stepState) {
+                if (stepState == StepState.complete) {
+                  return Icon(
+                    Icons.check,
+                    color: Colors.green,
+                    size: 16,
+                  );
+                }
+
+                if (stepState == StepState.indexed) {
+                  return Icon(
+                    Icons.play_arrow,
+                    color: Theme.of(context).primaryColor,
+                    size: 16,
+                  );
+                }
+
+                return Icon(
+                  Icons.lock,
+                  color: Colors.grey,
+                  size: 16,
                 );
               },
+              type: StepperType.vertical,
+              connectorThickness: 1,
+              controlsBuilder: (context, details) => SizedBox.shrink(),
+              steps: [
+                for (final task in weeklyTasks) task.getStep(context),
+              ],
             ),
           ),
         ],

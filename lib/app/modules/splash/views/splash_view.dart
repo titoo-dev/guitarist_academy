@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/splash_controller.dart';
@@ -41,7 +42,7 @@ class _SplashContentState extends State<SplashContent> {
           backgroundColor: Colors.white,
           radius: 50,
           child: Icon(
-            Icons.ac_unit,
+            LineIcons.guitar,
             color: Theme.of(context).primaryColor,
             size: 50,
           ),

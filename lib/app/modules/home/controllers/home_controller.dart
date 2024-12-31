@@ -9,7 +9,8 @@ class HomeController extends GetxController {
   static final navigatorKey = GlobalKey<NavigatorState>();
 
   void onTap(int index) {
-    navigatorKey.currentState?.pushNamed('$index');
+    if (currentIndex.value == index) return;
+    navigatorKey.currentState?.pushReplacementNamed('$index');
     currentIndex.value = index;
   }
 }
