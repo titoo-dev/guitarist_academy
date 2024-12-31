@@ -47,7 +47,7 @@ class HomeView extends GetView<HomeController> {
                   iconSize: 24,
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   duration: Duration(milliseconds: 400),
-                  tabBackgroundColor: gNavTabBackgroundColor!,
+                  tabBackgroundColor: gNavTabBackgroundColor,
                   color: Colors.black,
                   tabs: [
                     GButton(

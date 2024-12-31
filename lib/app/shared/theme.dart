@@ -63,5 +63,5 @@ final elevatedButtonTheme = ElevatedButtonThemeData(
 // Gnav theme
 final gNavRippleColor = Colors.grey[300];
 final gNavHoverColor = Colors.grey[100];
-final gNavActiveColor = Colors.black;
-final gNavTabBackgroundColor = Colors.grey[100];
+final gNavActiveColor = colorScheme.primary;
+final gNavTabBackgroundColor = kOnPrimaryContainer;
