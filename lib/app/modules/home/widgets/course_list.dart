@@ -9,7 +9,7 @@ class CourseList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: EdgeInsets.only(top: 14.0),
-      itemCount: 30,
+      itemCount: 9,
       physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
