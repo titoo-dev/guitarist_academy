@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ImagePosition { top, bottom }
+import '../../../shared/enums.dart';
 
 class OnboardingItem extends StatelessWidget {
   const OnboardingItem({

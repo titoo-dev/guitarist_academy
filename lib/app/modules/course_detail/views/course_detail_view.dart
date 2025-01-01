@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../../../shared/enums.dart';
 import '../../../shared/theme.dart';
 import '../../../shared/widgets/buttons.dart';
 import '../../../shared/widgets/dynamic_brightness.dart';
@@ -150,12 +151,6 @@ class ModuleList extends StatelessWidget {
       ],
     );
   }
-}
-
-enum ModuleStatus {
-  completed,
-  inProgress,
-  locked,
 }
 
 class ModuleItem extends GetView<HomeController> {
