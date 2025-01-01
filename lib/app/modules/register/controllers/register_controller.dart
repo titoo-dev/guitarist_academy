@@ -15,48 +15,9 @@ class RegisterController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  @override
-  void onInit() {
-    super.onInit();
-    FirebaseAuth.instance.authStateChanges().listen(
-      (User? user) {
-        if (user != null) {
-          logger.i('User is signed in: ${user.email}');
-
-          Get.showSnackbar(GetSnackBar(
-            title: 'Welcome back',
-            message: 'You are signed in as ${user.email}',
-            duration: const Duration(seconds: 5),
-            backgroundColor: Get.theme.colorScheme.primary,
-            forwardAnimationCurve: Curves.easeInOut,
-          ));
-        } else {
-          logger.i('User is signed out.');
-
-          Get.showSnackbar(GetSnackBar(
-            title: 'Signed out',
-            message: 'You are signed out.',
-            duration: const Duration(seconds: 5),
-            backgroundColor: kWarningColor,
-            forwardAnimationCurve: Curves.easeInOut,
-          ));
-        }
-      },
-      onError: (e) {
-        logger.e(e.toString());
-
-        Get.showSnackbar(GetSnackBar(
-          title: 'Error',
-          message: e.toString(),
-          duration: const Duration(seconds: 5),
-          forwardAnimationCurve: Curves.easeInOut,
-        ));
-      },
-    );
-  }
-
   void checkFormValidity() {
     if (formKey.currentState!.saveAndValidate()) {
+      final name = formKey.currentState!.fields['name']!.value as String;
       final email = formKey.currentState!.fields['email']!.value as String;
       final password =
           formKey.currentState!.fields['password']!.value as String;
@@ -64,25 +25,24 @@ class RegisterController extends GetxController {
           formKey.currentState!.fields['confirm_password']!.value as String;
 
       if (password != confirmPassword) {
-        Get.showSnackbar(GetSnackBar(
-          title: 'Error',
-          message: 'Passwords do not match.',
-          duration: const Duration(seconds: 5),
-          backgroundColor: kErrorColor,
-          forwardAnimationCurve: Curves.easeInOut,
-        ));
+        formKey.currentState!.fields['confirm_password']!
+            .invalidate('Passwords do not match');
       } else {
-        signUpWithEmailAndPassword(email, password);
+        signUpWithEmailAndPassword(name, email, password);
       }
     }
   }
 
   // sign up with email and password
-  Future<void> signUpWithEmailAndPassword(String email, String password) async {
+  Future<void> signUpWithEmailAndPassword(
+      String name, String email, String password) async {
     showLoadingDialog();
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+
+      // save display name
+      await userCredential.user!.updateDisplayName(name);
 
       // send email verification
       await userCredential.user!.sendEmailVerification();
@@ -91,6 +51,8 @@ class RegisterController extends GetxController {
       logger.i('Verification email sent.');
 
       closeLoadingDialog();
+
+      Get.offNamed(Routes.EMAIL_VERIFICATION);
 
       Get.showSnackbar(GetSnackBar(
         title: 'Verification email sent',
@@ -101,28 +63,9 @@ class RegisterController extends GetxController {
       ));
     } on FirebaseAuthException catch (e) {
       handleAuthError(e);
-
-      closeLoadingDialog();
-
-      Get.showSnackbar(GetSnackBar(
-        title: 'Error',
-        message: e.message,
-        duration: const Duration(seconds: 5),
-        backgroundColor: kErrorColor,
-        forwardAnimationCurve: Curves.easeInOut,
-      ));
     } catch (e) {
       logger.e(e.toString());
-
       closeLoadingDialog();
-
-      Get.showSnackbar(GetSnackBar(
-        title: 'Error',
-        message: e.toString(),
-        duration: const Duration(seconds: 5),
-        backgroundColor: kErrorColor,
-        forwardAnimationCurve: Curves.easeInOut,
-      ));
     }
   }
 

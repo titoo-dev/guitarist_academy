@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
@@ -9,8 +10,9 @@ class HomeController extends GetxController {
   // current index
   final currentIndex = 0.obs;
 
-  // navigation key
+  User get currentUser => FirebaseAuth.instance.currentUser!;
 
+  // navigation key
   void onTap(int index) {
     if (currentIndex.value == index) return;
     currentIndex.value = index;

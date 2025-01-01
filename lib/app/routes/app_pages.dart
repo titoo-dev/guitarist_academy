@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ import '../modules/choose_avatar/bindings/choose_avatar_binding.dart';
 import '../modules/choose_avatar/views/choose_avatar_view.dart';
 import '../modules/course_detail/bindings/course_detail_binding.dart';
 import '../modules/course_detail/views/course_detail_view.dart';
+import '../modules/email_verification/bindings/email_verification_binding.dart';
+import '../modules/email_verification/views/email_verification_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/screens/courses_screen.dart';
 import '../modules/home/screens/dashboard_screen.dart';
@@ -83,6 +86,9 @@ class AppPages {
       name: _Paths.AUTH,
       page: () => const AuthView(),
       binding: AuthBinding(),
+      middlewares: [
+        AuthMiddleware(),
+      ],
     ),
     GetPage(
       name: _Paths.REGISTER,
@@ -109,5 +115,23 @@ class AppPages {
       page: () => const LessonDetailView(),
       binding: LessonDetailBinding(),
     ),
+    GetPage(
+      name: _Paths.EMAIL_VERIFICATION,
+      page: () => const EmailVerificationView(),
+      binding: EmailVerificationBinding(),
+    ),
   ];
+}
+
+class AuthMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    if (FirebaseAuth.instance.currentUser == null) return null;
+
+    if (!FirebaseAuth.instance.currentUser!.emailVerified) {
+      return const RouteSettings(name: Routes.EMAIL_VERIFICATION);
+    }
+
+    return const RouteSettings(name: Routes.ONBOARDING);
+  }
 }

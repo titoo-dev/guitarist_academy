@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class DashboardHeader extends StatelessWidget {
+import '../controllers/home_controller.dart';
+
+class DashboardHeader extends GetView<HomeController> {
   const DashboardHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final name = controller.currentUser.displayName;
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Row(
@@ -15,7 +19,7 @@ class DashboardHeader extends StatelessWidget {
             spacing: 8.0,
             children: [
               Text(
-                'Welcome, John',
+                'Welcome, $name',
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme

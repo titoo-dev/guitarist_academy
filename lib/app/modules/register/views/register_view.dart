@@ -49,11 +49,16 @@ class RegisterView extends GetView<RegisterController> {
                           'Name',
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
-                        TextFormField(
+                        FormBuilderTextField(
+                          name: 'name',
                           decoration: InputDecoration(
                             hintText: 'John Doe',
                             prefixIcon: Icon(Icons.person_outline),
                           ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                          ]),
                         ),
 
                         Text(

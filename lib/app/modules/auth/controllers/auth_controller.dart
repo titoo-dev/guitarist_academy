@@ -15,46 +15,6 @@ class AuthController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  @override
-  void onInit() {
-    super.onInit();
-    FirebaseAuth.instance.authStateChanges().listen(
-      (User? user) {
-        if (user != null) {
-          logger.i('User is signed in: ${user.email}');
-
-          Get.showSnackbar(GetSnackBar(
-            title: 'Welcome back',
-            message: 'You are signed in as ${user.email}',
-            duration: const Duration(seconds: 5),
-            backgroundColor: Get.theme.colorScheme.primary,
-            forwardAnimationCurve: Curves.easeInOut,
-          ));
-        } else {
-          logger.i('User is signed out.');
-
-          Get.showSnackbar(GetSnackBar(
-            title: 'Signed out',
-            message: 'You are signed out.',
-            duration: const Duration(seconds: 5),
-            backgroundColor: kWarningColor,
-            forwardAnimationCurve: Curves.easeInOut,
-          ));
-        }
-      },
-      onError: (e) {
-        logger.e(e.toString());
-
-        Get.showSnackbar(GetSnackBar(
-          title: 'Error',
-          message: e.toString(),
-          duration: const Duration(seconds: 5),
-          forwardAnimationCurve: Curves.easeInOut,
-        ));
-      },
-    );
-  }
-
   void checkFormValidity() {
     if (formKey.currentState!.saveAndValidate()) {
       final email = formKey.currentState!.fields['email']!.value as String;
@@ -83,7 +43,7 @@ class AuthController extends GetxController {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       // User is successfully signed in
-      logger.i('User signed in: ${userCredential.user}');
+      logger.i('User signed in: ${userCredential.user!.displayName}');
 
       closeLoadingDialog();
 
