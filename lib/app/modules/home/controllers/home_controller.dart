@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class HomeController extends GetxController {
   // selected category
   final selectedCategory = 'All'.obs;
@@ -20,6 +22,11 @@ class HomeController extends GetxController {
 
   // tap course
   void tapCourse() {
-    Get.toNamed('/course');
+    Get.toNamed(Routes.COURSE_DETAIL);
+  }
+
+  // play module
+  void tapModule() {
+    Get.toNamed(Routes.LESSON_DETAIL);
   }
 }

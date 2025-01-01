@@ -27,6 +27,7 @@ void main() async {
         colorScheme: colorScheme,
         inputDecorationTheme: inputDecorationTheme,
         elevatedButtonTheme: elevatedButtonTheme,
+        dividerColor: kGreyColor,
       ),
     ),
   );

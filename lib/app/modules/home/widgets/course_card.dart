@@ -10,7 +10,7 @@ class CourseCard extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: controller.tapCourse,
       padding: EdgeInsets.zero,
       elevation: 1,
       color: Theme.of(context).colorScheme.surface,

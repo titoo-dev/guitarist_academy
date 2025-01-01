@@ -21,7 +21,13 @@ class ForwardButton extends StatelessWidget {
 }
 
 class BackwardButton extends StatelessWidget {
-  const BackwardButton({super.key, required this.onPressed});
+  const BackwardButton({
+    super.key,
+    required this.onPressed,
+    this.iconSize = 24,
+  });
+
+  final double iconSize;
 
   final void Function() onPressed;
 
@@ -31,6 +37,8 @@ class BackwardButton extends StatelessWidget {
       onPressed: onPressed,
       textColor: Theme.of(context).colorScheme.primary,
       minWidth: 0,
+      elevation: 0,
+      color: Theme.of(context).colorScheme.surface,
       padding: EdgeInsets.all(14.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -38,7 +46,10 @@ class BackwardButton extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
         ),
       ),
-      child: Icon(Icons.arrow_back_outlined),
+      child: Icon(
+        Icons.arrow_back_outlined,
+        size: iconSize,
+      ),
     );
   }
 }
