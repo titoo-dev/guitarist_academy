@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 import 'app/shared/theme.dart';
 import 'firebase_options.dart';
+import 'initial_bindings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ void main() async {
         elevatedButtonTheme: elevatedButtonTheme,
         dividerColor: kGreyColor,
       ),
+      initialBinding: InitialBindings(),
     ),
   );
 }

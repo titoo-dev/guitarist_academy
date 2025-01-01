@@ -23,6 +23,7 @@ const kSuccessColor = Color(0xff72d09e);
 const kBrightSkyBlue = Color(0xff0daaf7);
 const kWarningColor = Color(0xfffebb27);
 const kGreyColor = Color(0xffdfe4ea);
+const kErrorColor = Color(0xffea6f71);
 
 const kSystemUiOverlayStyle = SystemUiOverlayStyle(
   statusBarColor: Colors.transparent,

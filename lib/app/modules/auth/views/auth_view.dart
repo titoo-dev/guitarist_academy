@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
+import 'package:line_icons/line_icons.dart';
 
 import '../../../shared/widgets/app_logo.dart';
 import '../../../shared/widgets/dismiss_keyboard.dart';
@@ -89,35 +92,51 @@ class LoginContent extends GetView<AuthController> {
 
         Padding(
           padding: const EdgeInsets.all(14.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 16.0,
-            children: [
-              // label: Email
-              Text(
-                'Email',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'example@gmail.com',
-                  prefixIcon: Icon(Icons.email_outlined),
+          child: FormBuilder(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 16.0,
+              children: [
+                // label: Email
+                Text(
+                  'Email',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-              ),
+                FormBuilderTextField(
+                  name: 'email',
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'example@gmail.com',
+                    prefixIcon: Icon(LineIcons.envelope),
+                  ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.email(),
+                  ]),
+                ),
 
-              // label: Password
-              Text(
-                'Password',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: '********',
-                  prefixIcon: Icon(Icons.lock_outline),
+                // label: Password
+                Text(
+                  'Password',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-              ),
-            ],
+                FormBuilderTextField(
+                  name: 'password',
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: '********',
+                    prefixIcon: Icon(LineIcons.lock),
+                  ),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.minLength(6),
+                  ]),
+                ),
+              ],
+            ),
           ),
         ),
 
@@ -140,7 +159,7 @@ class LoginContent extends GetView<AuthController> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton(
-            onPressed: controller.login,
+            onPressed: controller.checkFormValidity,
             child: Text('Login'),
           ),
         ),
