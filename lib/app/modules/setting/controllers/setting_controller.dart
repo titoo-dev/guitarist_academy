@@ -24,7 +24,19 @@ class SettingController extends GetxController {
     }
   }
 
-  void deleteAccount() {}
+  void deleteAccount() {
+    Dialogs.showConfirmationDialog(
+      title: 'Delete Account',
+      content: 'Are you sure you want to delete your account?',
+      onConfirm: () async {
+        // delete account
+        debugPrint('Account deleted');
+        Get.back();
+        await FirebaseAuth.instance.currentUser!.delete();
+        Get.offAllNamed(Routes.AUTH);
+      },
+    );
+  }
 
   void changePassword() {
     // validate form

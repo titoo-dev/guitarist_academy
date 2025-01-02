@@ -37,24 +37,29 @@ class Dialogs {
   static void showConfirmationDialog({
     required String title,
     required String content,
-    required Function onConfirm,
-  }) {
-    Get.defaultDialog(
-      title: title,
-      content: Text(content),
-      actions: [
-        TextButton(
-          onPressed: () => Get.back(),
-          child: Text('Cancel'),
-        ),
-        TextButton(
-          onPressed: () {
-            onConfirm();
-            Get.back();
-          },
-          child: Text('Confirm'),
-        ),
-      ],
+    required void Function()? onConfirm,
+  }) async {
+    Get.dialog(
+      AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            onPressed: Get.back,
+            child: Text('Cancel'),
+          ),
+          OutlinedButton(
+            onPressed: onConfirm,
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(color: kErrorColor), // Border color
+            ),
+            child: Text(
+              'Confirm',
+              style: TextStyle(color: kErrorColor),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
