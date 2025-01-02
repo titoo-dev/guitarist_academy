@@ -5,7 +5,16 @@ import '../../../shared/theme.dart';
 import '../controllers/home_controller.dart';
 
 class CourseCard extends GetView<HomeController> {
-  const CourseCard({super.key});
+  const CourseCard({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.progress,
+  });
+
+  final String imageUrl;
+  final String title;
+  final double progress;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +37,8 @@ class CourseCard extends GetView<HomeController> {
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
-              child: Image.asset(
-                'assets/onboard1.png',
+              child: Image.network(
+                imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -41,7 +50,7 @@ class CourseCard extends GetView<HomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Guitar Basics',
+                    title,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge
@@ -51,7 +60,7 @@ class CourseCard extends GetView<HomeController> {
                   ),
                   Spacer(),
                   LinearProgressIndicator(
-                    value: 0.7, // Example progress value
+                    value: progress, // Example progress value
                     backgroundColor: kGreyColor,
                     valueColor: AlwaysStoppedAnimation<Color>(
                       kSuccessColor,
