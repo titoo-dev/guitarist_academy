@@ -10,6 +10,11 @@ class AuthService extends GetxService {
   @override
   void onInit() {
     super.onInit();
-    FirebaseAuth.instance.currentUser!.reload();
+    if (FirebaseAuth.instance.currentUser != null) {
+      logger.i('User is logged in');
+      FirebaseAuth.instance.currentUser!.reload();
+    } else {
+      logger.i('User is not logged in');
+    }
   }
 }

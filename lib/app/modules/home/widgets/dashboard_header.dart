@@ -37,12 +37,15 @@ class DashboardHeader extends GetView<HomeController> {
           Spacer(),
 
           // circle avatar
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.grey,
-            child: Lottie.asset(
-              'assets/avatar1.json',
-              height: 80,
+          GestureDetector(
+            onTap: controller.openSetting,
+            child: CircleAvatar(
+              radius: 25,
+              backgroundColor: Colors.grey,
+              child: Lottie.asset(
+                'assets/avatar1.json',
+                height: 80,
+              ),
             ),
           ),
         ],

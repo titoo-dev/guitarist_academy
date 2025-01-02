@@ -29,4 +29,8 @@ class EmailVerificationController extends GetxController {
       backgroundColor: colorScheme.primary,
     );
   }
+
+  void continueToOnboarding() {
+    Get.offAllNamed(Routes.ONBOARDING);
+  }
 }

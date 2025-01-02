@@ -31,4 +31,8 @@ class HomeController extends GetxController {
   void tapModule() {
     Get.toNamed(Routes.LESSON_DETAIL);
   }
+
+  void openSetting() {
+    Get.toNamed(Routes.SETTING);
+  }
 }

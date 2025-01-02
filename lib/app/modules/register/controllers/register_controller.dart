@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../shared/snackbars.dart';
 import '../../../shared/theme.dart';
 
 class RegisterController extends GetxController {
@@ -54,13 +55,10 @@ class RegisterController extends GetxController {
 
       Get.offNamed(Routes.EMAIL_VERIFICATION);
 
-      Get.showSnackbar(GetSnackBar(
-        title: 'Verification email sent',
-        message: 'Please verify your email address to continue.',
-        duration: const Duration(seconds: 5),
-        backgroundColor: Get.theme.colorScheme.primary,
-        forwardAnimationCurve: Curves.easeInOut,
-      ));
+      Snackbars.showInfoSnackbar(
+        'Verification email sent',
+        'Please verify your email address to continue.',
+      );
     } on FirebaseAuthException catch (e) {
       handleAuthError(e);
     } catch (e) {

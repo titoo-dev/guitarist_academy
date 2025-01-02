@@ -13,6 +13,7 @@ abstract class Routes {
   static const COURSE_DETAIL = _Paths.COURSE_DETAIL;
   static const LESSON_DETAIL = _Paths.LESSON_DETAIL;
   static const EMAIL_VERIFICATION = _Paths.EMAIL_VERIFICATION;
+  static const SETTING = _Paths.SETTING;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const COURSE_DETAIL = '/course-detail';
   static const LESSON_DETAIL = '/lesson-detail';
   static const EMAIL_VERIFICATION = '/email-verification';
+  static const SETTING = '/setting';
 }
